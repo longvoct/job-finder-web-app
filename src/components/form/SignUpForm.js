@@ -7,10 +7,16 @@ import InputHookForm from "../input/InputHookForm";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import LoadingSpin from "../loading/LoadingSpin";
-import { auth } from "../../firebase-app/firebase-config";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth, db } from "../../firebase-app/firebase-config";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 
 const schema = Yup.object({
+  username: Yup.string()
+    .max(10, "Tên của bạn chỉ được phép tối đa 10 ký tự")
+    .required("Vui lòng nhập tên của bạn!"),
   email: Yup.string()
     .email("Địa chỉ email không hợp lệ")
     .required("Vui lòng nhập địa chỉ email của bạn!"),
@@ -19,9 +25,8 @@ const schema = Yup.object({
     .required("Vui lòng nhập mật khẩu của bạn"),
 }).required();
 
-const SignInForm = ({ http, setToken, ...props }) => {
+const SignUpForm = ({ ...props }) => {
   const [loadingSpin, setLoadingSpin] = useState(false);
-  const [errorLogin, setErrorLogin] = useState(false);
   const navigate = useNavigate();
   const {
     handleSubmit,
@@ -34,14 +39,46 @@ const SignInForm = ({ http, setToken, ...props }) => {
   });
 
   const onSubmitHandler = async (values) => {
+    if (!isValid) return;
     try {
       setLoadingSpin(true);
-      await signInWithEmailAndPassword(auth, values.email, values.password);
+      const user = await createUserWithEmailAndPassword(
+        auth,
+        values.email,
+        values.password
+      );
       setLoadingSpin(false);
-      console.log("Login successfully!");
-      navigate("/");
+
+      await updateProfile(auth.currentUser, { displayName: values.username });
+
+      const colRef = collection(db, "users");
+
+      await addDoc(colRef, {
+        id: user.user.uid,
+        username: values.username,
+        email: values?.email,
+        password: values?.password,
+        createdAt: serverTimestamp(),
+      });
+
+      toast.success("Tạo tài khoản thành công !");
+      reset({
+        username: "",
+        email: "",
+        password: "",
+      });
+      setTimeout(() => {
+        navigate("/");
+      }, 2000);
     } catch (error) {
-      console.log(error);
+      console.log("error: ", error);
+      if (error.code === "auth/email-already-in-use") {
+        toast.error("Địa chỉ email này đã được sử dụng!");
+      }
+      // if (error.code === "auth/invalid-email") {
+      //   console.log("Địa chỉ email không hợp lệ!");
+      // }
+      setLoadingSpin(false);
     }
   };
   useEffect(() => {
@@ -55,6 +92,22 @@ const SignInForm = ({ http, setToken, ...props }) => {
         autoComplete="off"
         className="flex flex-col gap-4"
       >
+        <div className="flex flex-col gap-2">
+          <label htmlFor="email">Tên tài khoản</label>
+          <InputHookForm
+            name="username"
+            type="username"
+            id="username"
+            control={control}
+            placeholder="Nhập tên của bạn"
+          />
+          {errors?.username && (
+            <p className="text-sm font-[300] text-red-500">
+              {errors?.username?.message}
+            </p>
+          )}
+        </div>
+
         <div className="flex flex-col gap-2">
           <label htmlFor="email">Địa chỉ email</label>
           <InputHookForm
@@ -86,17 +139,10 @@ const SignInForm = ({ http, setToken, ...props }) => {
             </p>
           )}
         </div>
-        {errorLogin === true && (
-          <div className="text-sm text-red-500 font-[300]">
-            Incorrect account or password
-          </div>
-        )}
         <p>
-          Bạn chưa có tài khoản?{" "}
-          <Link to="/signup">
-            <strong className="cursor-pointer text-[#fa427f]">
-              Tạo tài khoản
-            </strong>
+          Đã có tài khoản?{" "}
+          <Link to="/login">
+            <strong className="cursor-pointer text-[#fa427f]">Đăng nhập</strong>
           </Link>
         </p>
 
@@ -105,7 +151,7 @@ const SignInForm = ({ http, setToken, ...props }) => {
             type="submit"
             className="mt-6 flex items-center justify-center w-full p-4 bg-[#867eee] text-white font-semibold rounded-lg active:bg-opacity-90"
           >
-            Đăng Nhập
+            Đăng Ký
           </button>
         ) : (
           <button
@@ -116,7 +162,8 @@ const SignInForm = ({ http, setToken, ...props }) => {
           </button>
         )}
       </form>
+      <ToastContainer autoClose={1000} />
     </div>
   );
 };
-export default SignInForm;
+export default SignUpForm;

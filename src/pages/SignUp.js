@@ -1,47 +1,23 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
-import SignUpHookForm from "../components/form/SignupHookForm";
-import PageContainer from "../components/layout/PageContainer";
-import AuthCreate from "../config/AuthCreate";
-import logo from "../assets/logo.png";
-
-const SignUpStyles = styled.div`
-  width: 100%;
-  height: 110vh;
-  position: relative;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  .subtitle {
-    background: linear-gradient(180deg, #ddb9ff 0%, #a749f8 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-`;
+import logo from "../assets/images/logo.png";
+import SignUpForm from "../components/form/SignUpForm";
 
 const SignUp = () => {
-  const { http } = AuthCreate();
   return (
-    <SignUpStyles className="body-style">
-      <PageContainer>
-        <div className="mt-[60px] w-full max-w-[560px]  mx-auto rounded-2xl bg-[#2C2C35] zz flex flex-col p-10 items-center">
-          <Link
-            to="/"
-            onClick={() => {
-              window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-            }}
-          >
-            <div className="w-[200px]">
-              <img src={logo} alt="" className="w-full h-full object-cover" />
-            </div>
-          </Link>
-          <SignUpHookForm http={http}></SignUpHookForm>
+    <div className="bg-[#fff] pb-10">
+      <div className="mt-[80px] shadow-xl flex w-full max-w-[550px] mx-auto">
+        <div className="flex-[5] bg-[#fbfbfb] flex flex-col p-10 items-center">
+          <div className="mb-8 flex flex-col items-center justify-center gap-y-2">
+            <img src={logo} alt="" className="w-[60px] h-full object-cover" />
+            <span className="font-[500] mt-2 text-[16px]">
+              Welcome to{" "}
+              <span className="text-[#867eee] font-[700]">CatinDob!</span>
+            </span>
+          </div>
+          <SignUpForm></SignUpForm>
         </div>
-      </PageContainer>
-      <div className="h-10"></div>
-    </SignUpStyles>
+      </div>
+    </div>
   );
 };
 
