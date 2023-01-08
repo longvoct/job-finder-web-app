@@ -23,7 +23,7 @@ const ImageUpload = (props) => {
         {...rest}
       />
       {progress !== 0 && !image && (
-        <div className="absolute z-10 w-10 h-10 border-4 border-[#fa427f] rounded-full loading border-t-transparent animate-spin"></div>
+        <div className="absolute z-10 w-10 h-10 border-4 border-[#fc7a78] rounded-full loading border-t-transparent animate-spin"></div>
       )}
       {!image && progress === 0 && (
         <div className="flex flex-col items-center text-center pointer-events-none">

@@ -124,7 +124,7 @@ const HomePage = () => {
       {/* Mô tả công việc */}
       <form onSubmit={handleSubmit(addPostHandler)}>
         <div className="mt-5">
-          <span className="font-[700] text-[20px] text-[#fa427f]">
+          <span className="font-[700] text-[20px] text-[#fc7a78]">
             Mô tả công việc
           </span>
           <div className="mt-5 w-full grid grid-cols-2 gap-x-[150px]">
@@ -234,7 +234,7 @@ const HomePage = () => {
         </div>
         {/* Công ty */}
         <div className="mt-10">
-          <span className="font-[700] text-[20px] text-[#fa427f]">
+          <span className="font-[700] text-[20px] text-[#fc7a78]">
             Thông tin công ty
           </span>
           <div className="mt-5 w-full grid grid-cols-2 gap-x-[150px]">
@@ -286,7 +286,7 @@ const HomePage = () => {
             </div>
             <button
               type="submit"
-              className="-translate-x-[345px] inline-flex items-center justify-center px-8 py-4 font-sans font-semibold tracking-wide text-white bg-[#fa427f] rounded-lg w-[200px] h-[60px]"
+              className="-translate-x-[345px] inline-flex items-center justify-center px-8 py-4 font-sans font-semibold tracking-wide text-white bg-[#fc7a78] rounded-lg w-[200px] h-[60px]"
             >
               Lưu thông tin
             </button>
