@@ -48,7 +48,6 @@ export default function useFirebaseFile({ setValue, getValues }) {
 
   const handleSelectFile = (e) => {
     const file = e.target.files[0];
-    console.log("file: ", file);
     if (!file) return;
     setValue("file_name", file.name);
     setNameFile(file.name);

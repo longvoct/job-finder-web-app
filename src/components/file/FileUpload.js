@@ -13,7 +13,6 @@ const FileUpload = (props) => {
     handleDeleteImage = () => {},
     ...rest
   } = props;
-  console.log(nameFile);
   return (
     <label
       className={`cursor-pointer flex items-center justify-center border border-dashed border-orange-500 w-full rounded-lg ${className} relative overflow-hidden group`}

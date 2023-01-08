@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import FileUpload from "../components/file/FileUpload";
 import useFirebaseFile from "../hooks/useFirebaseFile";
@@ -8,8 +8,12 @@ import "react-toastify/dist/ReactToastify.css";
 import {
   addDoc,
   collection,
+  doc,
+  limit,
   onSnapshot,
-  serverTimestamp,
+  query,
+  updateDoc,
+  where,
 } from "firebase/firestore";
 import { useAuth } from "../contexts/auth-context";
 
@@ -29,16 +33,24 @@ const UploadCV = () => {
     handleSelectFile,
     handleDeleteFile,
   } = useFirebaseFile({ setValue, getValues });
-
+  const [updateIdUser, setUpdateIdUser] = useState("");
   const { userInfo } = useAuth();
+  const docRef = collection(db, "users");
+
+  useEffect(() => {
+    const q = query(docRef, where("id", "==", `${userInfo.id}`));
+    onSnapshot(q, (snapshot) => {
+      snapshot.forEach((doc) => {
+        setUpdateIdUser(doc.id);
+      });
+    });
+  }, [docRef, userInfo.id]);
 
   const onSubmit = async (values) => {
-    console.log("values: ", values);
-    const colRef = collection(db, "upload-cv");
-    await addDoc(colRef, {
+    const colRefUpdate = doc(db, "users", updateIdUser);
+    await updateDoc(colRefUpdate, {
       ...values,
       file: file,
-      user_id: userInfo.uid,
     });
     toast.success("Lưu hồ sơ thành công!");
     setFile(null);
@@ -164,7 +176,7 @@ const UploadCV = () => {
           <button
             type="submit"
             className={`${
-              !file ? "pointer-events-none bg-opacity-50" : ""
+              !file && docRef ? "pointer-events-none bg-opacity-50" : ""
             } my-10 inline-flex items-center justify-center px-8 py-4 font-sans font-semibold tracking-wide text-white bg-[#fc7a78] rounded-lg w-[200px] h-[60px]`}
           >
             Lưu hồ sơ
