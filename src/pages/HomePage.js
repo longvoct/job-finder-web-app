@@ -107,6 +107,8 @@ const HomePage = () => {
       requirement: "",
       name_company: "",
       address: "",
+      email: "",
+      phone: "",
     });
     setImage(null);
     setProgress(0);
@@ -237,7 +239,7 @@ const HomePage = () => {
           <span className="font-[700] text-[20px] text-[#fc7a78]">
             Thông tin công ty
           </span>
-          <div className="mt-5 w-full grid grid-cols-2 gap-x-[150px]">
+          <div className="mt-5 w-full grid grid-cols-2 grid-rows-2 gap-x-[150px]">
             <div className="flex flex-col gap-2">
               <label htmlFor="name_company" className="font-[600]">
                 Tên công ty
@@ -267,6 +269,38 @@ const HomePage = () => {
               {errors?.address && (
                 <p className="text-sm font-[300] text-red-500">
                   {errors?.address?.message}
+                </p>
+              )}
+            </div>
+            <div className="mt-3 flex flex-col gap-2">
+              <label htmlFor="email" className="font-[600]">
+                Email
+              </label>
+              <InputHookForm
+                control={control}
+                name="email"
+                id="email"
+                placeholder="Địa chỉ email liên hệ của công ty"
+              />
+              {errors?.email && (
+                <p className="text-sm font-[300] text-red-500">
+                  {errors?.email?.message}
+                </p>
+              )}
+            </div>
+            <div className="mt-3 flex flex-col gap-2">
+              <label htmlFor="phone" className="font-[600]">
+                Số điện thoại
+              </label>
+              <InputHookForm
+                control={control}
+                name="phone"
+                id="phone"
+                placeholder="Nhập số điện thoại liên hệ"
+              />
+              {errors?.phone && (
+                <p className="text-sm font-[300] text-red-500">
+                  {errors?.phone?.message}
                 </p>
               )}
             </div>
