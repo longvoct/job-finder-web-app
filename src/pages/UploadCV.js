@@ -38,13 +38,13 @@ const UploadCV = () => {
   const docRef = collection(db, "users");
 
   useEffect(() => {
-    const q = query(docRef, where("id", "==", `${userInfo.id}`));
+    const q = query(docRef, where("user_id", "==", `${userInfo.user_id}`));
     onSnapshot(q, (snapshot) => {
       snapshot.forEach((doc) => {
         setUpdateIdUser(doc.id);
       });
     });
-  }, [docRef, userInfo.id]);
+  }, [docRef, userInfo]);
 
   const onSubmit = async (values) => {
     const colRefUpdate = doc(db, "users", updateIdUser);

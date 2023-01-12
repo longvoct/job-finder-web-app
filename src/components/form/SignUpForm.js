@@ -54,7 +54,7 @@ const SignUpForm = ({ ...props }) => {
       const colRef = collection(db, "users");
 
       await addDoc(colRef, {
-        id: user.user.uid,
+        user_id: user.user.uid,
         username: values.username,
         email: values?.email,
         password: values?.password,

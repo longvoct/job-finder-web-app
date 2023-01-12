@@ -83,14 +83,6 @@ const HomePage = () => {
   const addPostHandler = async (values) => {
     const colRef = collection(db, "posts");
     await addDoc(colRef, {
-      // title: values.title,
-      // wage: values.wage,
-      // type_job: values.type_job,
-      // career: values.career,
-      // description: values.description,
-      // requirement: values.requirement,
-      // name_company: values.name_company,
-      // address: values.address,
       ...values,
       user_id: userInfo.uid,
       image: image,
