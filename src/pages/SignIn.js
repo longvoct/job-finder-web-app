@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 const SignIn = () => {
   const { userInfo } = useAuth();
   const navigate = useNavigate();
-  console.log("userInfo: ", userInfo?.email);
 
   useEffect(() => {
     if (userInfo?.email) navigate("/");

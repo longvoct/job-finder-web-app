@@ -81,7 +81,6 @@ const HomePage = () => {
   }, [reducerValue]);
 
   const addPostHandler = async (values) => {
-    console.log("values: ", values);
     const colRef = collection(db, "posts");
     await addDoc(colRef, {
       // title: values.title,
@@ -95,6 +94,7 @@ const HomePage = () => {
       ...values,
       user_id: userInfo.uid,
       image: image,
+      feedbacks: [],
       createdAt: serverTimestamp(),
     });
     toast.success("Đăng bài thành công!");
