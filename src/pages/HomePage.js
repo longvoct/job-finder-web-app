@@ -99,8 +99,6 @@ const HomePage = () => {
       requirement: "",
       name_company: "",
       address: "",
-      email: "",
-      phone: "",
     });
     setImage(null);
     setProgress(0);
@@ -146,7 +144,7 @@ const HomePage = () => {
                 control={control}
                 name="wage"
                 id="wage"
-                placeholder="Mức lương tối thiểu"
+                placeholder="Mức lương khoảng..."
               />
               {errors?.wage && (
                 <p className="text-sm font-[300] text-red-500">
@@ -200,7 +198,7 @@ const HomePage = () => {
                 {...register("description")}
                 id="description"
                 placeholder={"Thêm mô tả về công việc ..."}
-                className="w-[550px] h-[200px] p-4 mb-2 border border-solid border-gray-200 rounded-lg transition-all resize-none focus:border-[#7C73F8]"
+                className="w-[550px] h-[200px] p-4 mb-2 border border-solid border-gray-200 rounded-lg transition-all resize-none focus:border-[#35405a]"
               ></textarea>
               {errors?.description && (
                 <p className="text-sm font-[300] text-red-500">
@@ -216,7 +214,7 @@ const HomePage = () => {
                 {...register("requirement")}
                 id="requirement"
                 placeholder={"Những yêu cầu  trong công việc ..."}
-                className="w-[550px] h-[200px] p-4 mb-2 border border-solid border-gray-200 rounded-lg transition-all resize-none focus:border-[#7C73F8]"
+                className="w-[550px] h-[200px] p-4 mb-2 border border-solid border-gray-200 rounded-lg transition-all resize-none focus:border-[#35405a]"
               ></textarea>
               {errors?.requirement && (
                 <p className="text-sm font-[300] text-red-500">
@@ -231,7 +229,7 @@ const HomePage = () => {
           <span className="font-[700] text-[20px] text-[#fc7a78]">
             Thông tin công ty
           </span>
-          <div className="mt-5 w-full grid grid-cols-2 grid-rows-2 gap-x-[150px]">
+          <div className="mt-5 w-full grid grid-cols-2 gap-x-[150px]">
             <div className="flex flex-col gap-2">
               <label htmlFor="name_company" className="font-[600]">
                 Tên công ty
@@ -264,38 +262,6 @@ const HomePage = () => {
                 </p>
               )}
             </div>
-            <div className="mt-3 flex flex-col gap-2">
-              <label htmlFor="email" className="font-[600]">
-                Email
-              </label>
-              <InputHookForm
-                control={control}
-                name="email"
-                id="email"
-                placeholder="Địa chỉ email liên hệ của công ty"
-              />
-              {errors?.email && (
-                <p className="text-sm font-[300] text-red-500">
-                  {errors?.email?.message}
-                </p>
-              )}
-            </div>
-            <div className="mt-3 flex flex-col gap-2">
-              <label htmlFor="phone" className="font-[600]">
-                Số điện thoại
-              </label>
-              <InputHookForm
-                control={control}
-                name="phone"
-                id="phone"
-                placeholder="Nhập số điện thoại liên hệ"
-              />
-              {errors?.phone && (
-                <p className="text-sm font-[300] text-red-500">
-                  {errors?.phone?.message}
-                </p>
-              )}
-            </div>
           </div>
           <div className="my-10 flex justify-between">
             <div className="flex flex-col pb-10">
@@ -312,7 +278,7 @@ const HomePage = () => {
             </div>
             <button
               type="submit"
-              className="-translate-x-[345px] inline-flex items-center justify-center px-8 py-4 font-sans font-semibold tracking-wide text-white bg-[#fc7a78] rounded-lg w-[200px] h-[60px]"
+              className="-translate-x-[345px] inline-flex items-center justify-center px-8 py-4 font-sans font-semibold tracking-wide text-white bg-[#fc7a78] rounded-lg w-[200px] h-[60px] active:bg-[#ffa6a4]"
             >
               Lưu thông tin
             </button>

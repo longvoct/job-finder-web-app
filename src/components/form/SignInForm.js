@@ -94,7 +94,7 @@ const SignInForm = ({ http, setToken, ...props }) => {
         <p>
           Bạn chưa có tài khoản?{" "}
           <Link to="/signup">
-            <strong className="cursor-pointer text-[#fa427f]">
+            <strong className="cursor-pointer text-[#30DB59]">
               Tạo tài khoản
             </strong>
           </Link>
@@ -103,14 +103,14 @@ const SignInForm = ({ http, setToken, ...props }) => {
         {!loadingSpin ? (
           <button
             type="submit"
-            className="mt-6 flex items-center justify-center w-full p-4 bg-[#867eee] text-white font-semibold rounded-lg active:bg-opacity-90"
+            className="mt-6 flex items-center justify-center w-full p-4 bg-[#35405a] text-white font-semibold rounded-lg active:bg-opacity-90"
           >
             Đăng Nhập
           </button>
         ) : (
           <button
             type="submit"
-            className="pointer-events-none mt-6 flex items-center justify-center w-full p-4 bg-[#867EEE] text-white font-semibold rounded-lg bg-opacity-80"
+            className="pointer-events-none mt-6 flex items-center justify-center w-full p-4 bg-[#35405a] text-white font-semibold rounded-lg bg-opacity-80"
           >
             <LoadingSpin></LoadingSpin>
           </button>

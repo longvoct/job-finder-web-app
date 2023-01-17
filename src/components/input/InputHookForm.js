@@ -9,7 +9,7 @@ const InputHookForm = ({ control, className, ...props }) => {
   });
   return (
     <input
-      className={`p-4 mb-2 border border-solid text-[#141418]  border-gray-200 rounded-lg focus:border-[#7C73F8] transition-all ${className}`}
+      className={`p-4 mb-2 border border-solid text-[#141418]  border-gray-200 rounded-lg focus:border-[#7c828e] transition-all ${className}`}
       {...field}
       {...props}
     />

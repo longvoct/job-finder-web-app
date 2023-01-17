@@ -4,7 +4,7 @@ import logo2 from "../../assets/images/logo2.png";
 
 const Header = ({ userInfo, signOut, ...props }) => {
   return (
-    <div className="w-full bg-[#a099ff]">
+    <div className="w-full bg-[#b1b9ca]">
       <header className="px-[100px] py-2 flex shadow-md">
         <div className="w-full flex items-center justify-between">
           <div className="flex gap-x-2 items-center">
@@ -18,7 +18,7 @@ const Header = ({ userInfo, signOut, ...props }) => {
                 style={{ padding: "15px 15px", borderRadius: "8px" }}
                 className={({ isActive }) =>
                   isActive
-                    ? "bg-[#756cee] transition-all duration-500"
+                    ? "bg-[#35405a] transition-all duration-500"
                     : "transition-all"
                 }
               >
@@ -29,7 +29,7 @@ const Header = ({ userInfo, signOut, ...props }) => {
                 style={{ padding: "15px 15px", borderRadius: "8px" }}
                 className={({ isActive }) =>
                   isActive
-                    ? "bg-[#756cee]  transition-all duration-500"
+                    ? "bg-[#35405a]  transition-all duration-500"
                     : "transition-all"
                 }
               >
