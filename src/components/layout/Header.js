@@ -24,17 +24,32 @@ const Header = ({ userInfo, signOut, ...props }) => {
               >
                 <span>Đăng tuyển dụng</span>
               </NavLink>
-              <NavLink
-                to="/upload-cv"
-                style={{ padding: "15px 15px", borderRadius: "8px" }}
-                className={({ isActive }) =>
-                  isActive
-                    ? "bg-[#35405a]  transition-all duration-500"
-                    : "transition-all"
-                }
-              >
-                <span>Upload CV</span>
-              </NavLink>
+
+              {userInfo?.type === 1 ? (
+                <NavLink
+                  to="/blog"
+                  style={{ padding: "15px 15px", borderRadius: "8px" }}
+                  className={({ isActive }) =>
+                    isActive
+                      ? "bg-[#35405a]  transition-all duration-500"
+                      : "transition-all"
+                  }
+                >
+                  <span>Blog</span>
+                </NavLink>
+              ) : (
+                <NavLink
+                  to="/upload-cv"
+                  style={{ padding: "15px 15px", borderRadius: "8px" }}
+                  className={({ isActive }) =>
+                    isActive
+                      ? "bg-[#35405a]  transition-all duration-500"
+                      : "transition-all"
+                  }
+                >
+                  <span>Upload CV</span>
+                </NavLink>
+              )}
             </div>
           </div>
 

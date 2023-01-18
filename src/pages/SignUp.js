@@ -11,7 +11,7 @@ const SignUp = () => {
             <img src={logo} alt="" className="w-[60px] h-full object-cover" />
             <span className="font-[500] mt-2 text-[16px]">
               Welcome to{" "}
-              <span className="text-[#867eee] font-[700]">CatinDob!</span>
+              <span className="text-[#35405a] font-[700]">CatinDob!</span>
             </span>
           </div>
           <SignUpForm></SignUpForm>

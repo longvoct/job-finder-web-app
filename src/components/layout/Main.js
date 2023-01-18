@@ -8,6 +8,7 @@ import Header from "./Header";
 const Main = () => {
   const navigate = useNavigate();
   const { userInfo } = useAuth();
+  console.log("userInfo: ", userInfo);
 
   const handleSignOut = () => {
     signOut(auth);
