@@ -81,14 +81,17 @@ const HomePage = () => {
   }, [reducerValue]);
 
   const addPostHandler = async (values) => {
-    let endPoint = "posts";
-    if (userInfo?.type === 1) endPoint = "posts_vip";
-    const colRef = collection(db, `${endPoint}`);
+    let typePost = 0;
+    if (userInfo?.type === 1) {
+      typePost = 1;
+    }
+    const colRef = collection(db, "posts");
     await addDoc(colRef, {
       ...values,
       user_id: userInfo.uid,
       image: image,
       feedbacks: [],
+      typePost: typePost,
       createdAt: serverTimestamp(),
     });
     toast.success("Đăng bài thành công!");
