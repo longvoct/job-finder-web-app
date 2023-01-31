@@ -37,7 +37,6 @@ const HomePage = () => {
   const { userInfo } = useAuth();
 
   const addPostHandler = async (values) => {
-    console.log("values: ", values);
     const colRef = collection(db, "blogs");
     await addDoc(colRef, {
       ...values,
