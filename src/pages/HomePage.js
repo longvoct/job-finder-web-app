@@ -81,7 +81,9 @@ const HomePage = () => {
   }, [reducerValue]);
 
   const addPostHandler = async (values) => {
-    const colRef = collection(db, "posts");
+    let endPoint = "posts";
+    if (userInfo?.type === 1) endPoint = "posts_vip";
+    const colRef = collection(db, `${endPoint}`);
     await addDoc(colRef, {
       ...values,
       user_id: userInfo.uid,
