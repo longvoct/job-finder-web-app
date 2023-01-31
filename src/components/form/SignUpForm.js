@@ -57,6 +57,8 @@ const SignUpForm = ({ ...props }) => {
         user_id: user.user.uid,
         username: values.username,
         email: values?.email,
+        avatar:
+          "https://firebasestorage.googleapis.com/v0/b/job-finder-app-fb9fd.appspot.com/o/user-image.png?alt=media&token=30c63d2b-9d94-46e0-bdf6-baf6f2204e89",
         password: values?.password,
         createdAt: serverTimestamp(),
       });
