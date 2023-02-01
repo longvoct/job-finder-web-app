@@ -120,7 +120,7 @@ const HomePage = () => {
             <div className="flex flex-col gap-2">
               <div className="flex flex-col pb-10">
                 <label htmlFor="" className="font-[600]">
-                  Logo công ty
+                  Ảnh bài viết
                 </label>
                 <ImageUpload
                   className="mt-2 w-[550px] h-[300px]"
