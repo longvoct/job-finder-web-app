@@ -77,6 +77,7 @@ const HomePage = () => {
         });
       });
       setTypeJobs(result);
+      console.log("result: ", result);
     });
   }, [reducerValue]);
 

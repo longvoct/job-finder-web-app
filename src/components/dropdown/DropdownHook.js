@@ -46,7 +46,7 @@ const DropdownHook = ({
             key={item.id}
             className="p-5 cursor-pointer h-[56px] flex items-center hover:bg-gray-100 hover:rounded-lg"
             onClick={handleClickDropdownItem}
-            data-value={item.id}
+            data-value={item.name}
           >
             {item.name}
           </div>
